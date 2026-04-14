@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteBuilds – Build Your Dream PC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a href="index.html" class="logo">
+      <div class="logo-icon">BB</div>
+      <span>Byte<em>Builds</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="build-pc.html">Build PC</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <!-- Auth buttons (guest) -->
+    <div class="nav-auth" id="navAuth">
+      <button class="btn-nav-login" id="openLogin">Log In</button>
+      <button class="btn-nav-signup" id="openSignup">Sign Up</button>
+    </div>
+    <!-- User menu (logged in) -->
+    <div class="nav-user" id="navUser">
+      <div class="user-avatar" id="userAvatar">J</div>
+      <span class="user-name" id="userName">John</span>
+      <button class="btn-logout" id="logoutBtn">Log Out</button>
+    </div>
+  </nav>
+
+  <!-- ══ AUTH MODAL ══ -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-modal" id="authModal">
+
+      <!-- Tabs + Close -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin"  onclick="switchTab('login')">Log In</button>
+        <button class="auth-tab"        id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
+        <button class="auth-close" id="closeAuth" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="auth-form" id="loginForm">
+        <div class="auth-welcome">
+          <h2>Welcome back</h2>
+          <p>Log in to your ByteBuilds account</p>
+        </div>
+
+        <div class="field-group">
+          <label for="loginEmail">Email</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <input type="email" id="loginEmail" placeholder="you@email.com" autocomplete="email"/>
+          </div>
+          <span class="field-error" id="loginEmailErr"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="loginPassword">Password</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password"/>
+            <button class="toggle-pw" type="button" onclick="togglePw('loginPassword',this)" tabindex="-1">
+              <svg class="eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="field-error" id="loginPasswordErr"></span>
+        </div>
+
+        <div class="field-row">
+          <label class="checkbox-label"><input type="checkbox" id="rememberMe"/><span>Remember me</span></label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button class="btn-auth-submit" id="loginSubmit" onclick="handleLogin()">Log In</button>
+        <div class="auth-divider"><span>or</span></div>
+        <p class="auth-switch">Don't have an account? <button onclick="switchTab('signup')">Sign up</button></p>
+      </div>
+
+      <!-- SIGNUP -->
+      <div class="auth-form" id="signupForm" style="display:none;">
+        <div class="auth-welcome">
+          <h2>Create account</h2>
+          <p>Join thousands of PC builders today</p>
+        </div>
+
+        <div class="field-row-two">
+          <div class="field-group">
+            <label for="signupFirst">First Name</label>
+            <div class="field-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="signupFirst" placeholder="First name" autocomplete="given-name"/>
+            </div>
+            <span class="field-error" id="signupFirstErr"></span>
+          </div>
+          <div class="field-group">
+            <label for="signupLast">Last Name</label>
+            <div class="field-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="signupLast" placeholder="Last name" autocomplete="family-name"/>
+            </div>
+            <span class="field-error" id="signupLastErr"></span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="signupEmail">Email</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <input type="email" id="signupEmail" placeholder="you@email.com" autocomplete="email"/>
+          </div>
+          <span class="field-error" id="signupEmailErr"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="signupPassword">Password</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="signupPassword" placeholder="Min. 8 characters" autocomplete="new-password" oninput="updateStrength()"/>
+            <button class="toggle-pw" type="button" onclick="togglePw('signupPassword',this)" tabindex="-1">
+              <svg class="eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="field-error" id="signupPasswordErr"></span>
+          <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+          <span class="strength-label" id="strengthLabel"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="signupConfirm">Confirm Password</label>
+          <div class="field-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="signupConfirm" placeholder="Repeat your password" autocomplete="new-password"/>
+            <button class="toggle-pw" type="button" onclick="togglePw('signupConfirm',this)" tabindex="-1">
+              <svg class="eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="field-error" id="signupConfirmErr"></span>
+        </div>
+
+        <label class="checkbox-label terms-label">
+          <input type="checkbox" id="agreeTerms"/>
+          <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+        </label>
+        <span class="field-error" id="signupTermsErr"></span>
+
+        <button class="btn-auth-submit" id="signupSubmit" onclick="handleSignup()">Create Account</button>
+        <div class="auth-divider"><span>or</span></div>
+        <p class="auth-switch">Already have an account? <button onclick="switchTab('login')">Log in</button></p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="auth-success" id="authSuccess" style="display:none;">
+        <div class="success-icon">✓</div>
+        <h3 id="successTitle">Welcome back!</h3>
+        <p id="successMsg">You've been logged in successfully.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">🖥️ &nbsp;Interactive PC Builder</div>
+      <h1 class="hero-title">Build Your<br><span class="accent">Dream PC</span></h1>
+      <p class="hero-desc">Create the ultimate gaming rig with our interactive PC builder. Select components, compare specs, and get the best value for your budget.</p>
+      <div class="hero-buttons">
+        <a href="build-pc.html" class="btn-primary">Start Building →</a>
+        <a href="components.html" class="btn-outline">Browse Components</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-img-frame">
+        <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=900&q=85" alt="Gaming PC Setup" onerror="this.style.display='none'"/>
+        <div class="hero-img-overlay"></div>
+      </div>
+      <div class="stat-badge stat-badge--left"><span class="stat-num">500+</span><span class="stat-label">Components</span></div>
+      <div class="stat-badge stat-badge--right"><span class="stat-num">10k+</span><span class="stat-label">Builds Created</span></div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-section">
+    <div class="section-header">
+      <h2>Why Choose Us?</h2>
+      <p>Get the best PC building experience with our curated components and expert guidance</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3>Premium Components</h3>
+        <p>Hand-picked components from top brands to ensure the best quality and performance</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <h3>Easy Selection</h3>
+        <p>Simple step-by-step process to build your perfect PC without any confusion</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Price Transparency</h3>
+        <p>See real-time pricing and get the best value for your budget</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2>Ready to Build?</h2>
+      <p>Start your PC building journey today and create the perfect machine</p>
+      <a href="build-pc.html" class="btn-cta">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-icon">BB</div><span>Byte<em>Builds</em></span></a>
+        <p>Build your dream gaming PC with our interactive component selector.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a><a href="build-pc.html">Build PC</a><a href="components.html">Components</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="#">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <p class="social-text">Facebook | Twitter | Instagram</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 PC Builder. All rights reserved.</p></div>
+  </footer>
+
+  <script src="auth.js"></script>
+</body>
+</html>

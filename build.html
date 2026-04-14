@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteBuilds – Build Your PC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="build.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">
+      <div class="logo-icon">BB</div>
+      <span>Byte<em>Builds</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="build-pc.html" class="active">Build PC</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MAIN LAYOUT -->
+  <main class="builder-layout">
+
+    <!-- LEFT: Component Selector -->
+    <section class="selector-panel">
+      <div class="panel-header">
+        <h1>Build Your PC</h1>
+        <p>Select components for each category to build your dream machine</p>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs" id="categoryTabs">
+        <button class="tab active" data-category="cpu">CPU</button>
+        <button class="tab" data-category="gpu">GPU</button>
+        <button class="tab" data-category="ram">RAM</button>
+        <button class="tab" data-category="storage">Storage</button>
+        <button class="tab" data-category="motherboard">Motherboard</button>
+        <button class="tab" data-category="psu">Power Supply</button>
+        <button class="tab" data-category="cabinet">Cabinet</button>
+      </div>
+
+      <!-- Component Grid -->
+      <div class="component-grid" id="componentGrid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- RIGHT: Build Summary -->
+    <aside class="summary-panel" id="summaryPanel">
+      <h2>Build Summary</h2>
+
+      <div class="summary-list" id="summaryList">
+        <div class="summary-item" data-slot="cpu">
+          <span class="slot-label">CPU</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+        <div class="summary-item" data-slot="gpu">
+          <span class="slot-label">GPU</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+        <div class="summary-item" data-slot="ram">
+          <span class="slot-label">RAM</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+        <div class="summary-item" data-slot="storage">
+          <span class="slot-label">Storage</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+        <div class="summary-item" data-slot="motherboard">
+          <span class="slot-label">Motherboard</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+        <div class="summary-item" data-slot="psu">
+          <span class="slot-label">Power Supply</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+        <div class="summary-item" data-slot="cabinet">
+          <span class="slot-label">Cabinet</span>
+          <span class="slot-value">Not selected</span>
+        </div>
+      </div>
+
+      <div class="summary-total">
+        <span>Total Price</span>
+        <span class="total-price" id="totalPrice">$0</span>
+      </div>
+
+      <button class="btn-complete" id="completeBuildBtn" disabled>Complete Build</button>
+
+      <div class="components-counter">
+        <span>Components Selected</span>
+        <strong id="selectedCount">0 / 7</strong>
+      </div>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">BB</div>
+          <span>Byte<em>Builds</em></span>
+        </a>
+        <p>Build your dream gaming PC with our interactive component selector.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="build.html">Build PC</a>
+        <a href="components.html">Components</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 PC Builder. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Complete Build Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">✓</div>
+      <h3>Build Complete!</h3>
+      <p>Your dream PC has been configured. Here's your final build summary.</p>
+      <div class="modal-summary" id="modalSummary"></div>
+      <div class="modal-total" id="modalTotal"></div>
+      <div class="modal-actions">
+        <button class="btn-complete" id="modalClose">Close</button>
+        <button class="btn-outline-modal" id="modalReset">Start Over</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="build.js"></script>
+</body>
+</html>
